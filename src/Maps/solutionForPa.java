@@ -69,6 +69,7 @@ public class solutionForPa {
 //		 }
 		 solutionForPa p = new solutionForPa(g.getPackman().get(0),g.getFruit());
 		 ArrayList<Integer> n =p.solution();
+		 int a1=0;
 	
 		 
 	}
