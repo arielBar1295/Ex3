@@ -25,7 +25,6 @@ public class solutionForPa {
 		for(int i=0;i<fruit.size();i++) {
 			//System.out.println(p.getPoint().x()+","+p.getPoint().y()+","+ fruit.get(i).getPoint().x()+","+ fruit.get(i).getPoint().y());
 			double disP=m.distance3d(p.getPoint(), fruit.get(i).getPoint());
-			System.out.println(dis);
 			dis.add(disP-p.getRadiusOfeat());
 			
 		}
@@ -41,12 +40,15 @@ public class solutionForPa {
 		
 		}
 		for (int i = 0 ;i<indexOfF.size();i++) {
-			System.out.print(indexOfF.get(i));
+			System.out.print(indexOfF.get(i)+",");
 		}
 		return indexOfF;
 	}
 	public int indexOfMinimum(ArrayList<Double> dis,ArrayList<Integer> arr) {
 		int min=0;
+		while(search (min,arr)){
+			min++;	
+		}
 		for(int i=1;i<dis.size();i++) {
 			if(dis.get(min)>dis.get(i)&&(!search(i,arr)))
 				min=i;
@@ -61,7 +63,7 @@ public class solutionForPa {
 		return false;
 	}
 	public static void main(String[] args) {
-		 CsvData d1=new CsvData("C:\\Users\\ariel\\Desktop\\Ex3\\game_1543684662657.csv");
+		 CsvData d1=new CsvData("C:\\Users\\moshe\\OneDrive\\Documents\\game_1543684662657.csv");
 		 Game g= new Game(d1);
 		 ArrayList<ArrayList> a = new ArrayList<ArrayList>();
 //		 for (int i = 0 ; i<g.getPackman().size();i++) {
