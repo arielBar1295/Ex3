@@ -39,6 +39,13 @@ public class Game {
 	public ArrayList<Fruit> getFruit() {
 		return fruit;
 	}
+	public ArrayList<Fruit> copyF(){
+		ArrayList<Fruit> F = new ArrayList<Fruit>();
+		for (int i = 0; i < this.getFruit().size(); i++) {
+			F.add(this.getFruit().get(i));
+		}
+		return F;
+	}
 	
 	
 

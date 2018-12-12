@@ -1,5 +1,7 @@
 package Type;
 
+import java.util.ArrayList;
+
 import Coords.MyCoords;
 import Fileformat.CsvData;
 import Geom.Circle;
@@ -13,8 +15,12 @@ public class Packman {
 	public String id;
 	final int rad=3;
     private Point3D p;
+
 	private double Speed;
 	private double radiusOfeat;
+	private double time;
+	private MyCoords m=new MyCoords();
+	private ArrayList<String> path;
 	public Packman(Point3D p) {
 		this.p=p;
 		this.Speed=1;
@@ -31,7 +37,6 @@ public class Packman {
 		int indexOfid=d1.getIndexOfHeader("id");
 		int indexOfspeed=d1.getIndexOfHeader("Speed/Weight");
 		int indexOfradius=d1.getIndexOfHeader("Radius");
-		
 		this.Speed=Double.parseDouble(s[indexOfspeed]);
 		this.radiusOfeat=Double.parseDouble(s[indexOfradius]);
 		this.id=s[indexOfid];
@@ -40,8 +45,22 @@ public class Packman {
 		double z=Double.parseDouble(s[indexZ]);
 		this.p=new Point3D(x,y,z);
 		c= new Circle(this.p,rad);
+		time=0;
+		this.path=new ArrayList<String>();
 		
 	}
+	public ArrayList<String> getPath() {
+		return path;
+	}
+
+	public double getTime() {
+		return time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
 	public String toString() {
 		return id+",packman";
 		
@@ -57,5 +76,16 @@ public class Packman {
 	
 	public Point3D getPoint() {
 		return p;
+	}
+	public String getId() {
+		return this.id;
+		
+	}
+	public void translate(Point3D vec) {
+		this.p=m.add(p, vec);
+		
+	}
+	public void setP(Point3D p) {
+		this.p = p;
 	}
 }

@@ -45,6 +45,10 @@ public class Fruit {
 	public Point3D getPoint() {
 		return p;
 	}
+
+	public String getId() {
+		return this.id;
+	}
 }
 
 
