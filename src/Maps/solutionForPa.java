@@ -38,7 +38,7 @@ public class solutionForPa {
 			if (dis == 0 ) {
 				 time =0;
 			}else {
-			 time=(dis-p.getRadiusOfeat())/p.getSpeed();
+			 time=(dis-p.getRadiusOfeat())/p.getSpeed();//check if we need to add +p.getTime(); 
 			}
 //			System.out.println("time :"+time);
 			times.add(time);
