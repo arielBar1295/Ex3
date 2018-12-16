@@ -1,4 +1,7 @@
 package Type;
+
+import Geom.Point3D;
+
 /**
  * This object contains a pacman and a Fruit ID and the time it takes the pacman eat the specific fruit.
  * The class contains getters and setters.
@@ -9,11 +12,14 @@ public class shortestTime {
 private String fruitId;
 private String packmanId;
 private double time;
+private Point3D p;
 
-public shortestTime(String idF,String idP,double time) {
+
+public shortestTime(String idF,String idP,double time,Point3D _p) {
 	this.fruitId=idF;
 	this.packmanId=idP;
 	this.time=time;
+	this.p=_p;
 }
 public String getFruitId() {
 	return fruitId;
@@ -33,5 +39,10 @@ public double getTime() {
 public void setTime(double time) {
 	this.time = time;
 }
-
+public Point3D getP() {
+	return p;
+}
+public void setP(Point3D p) {
+	this.p = p;
+}
 }

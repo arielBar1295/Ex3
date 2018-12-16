@@ -20,10 +20,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Fileformat.CsvData;
+import Fileformat.CsvReader;
+
 public class gameBoard extends JFrame //implements MouseListener
 {
 	ImageBackground ImageBackground;
 	public BufferedImage myImage1;
+	private File file;
+	private CsvData data;
 	public gameBoard() {
 		initGUI();	
 
@@ -31,7 +36,7 @@ public class gameBoard extends JFrame //implements MouseListener
 
 	private void initGUI() {
 		try {
-			 myImage1 = ImageIO.read(new File("C:\\Users\\ariel\\eclipse-workspace\\Ex3\\src\\GUI\\pacman.png"));
+			 myImage1 = ImageIO.read(new File("C:\\Users\\moshe\\git\\Ex3\\src\\GUI\\pacman.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,20 +49,23 @@ public class gameBoard extends JFrame //implements MouseListener
 		Menu Menu = new Menu("Menu"); 
 		Menu add = new Menu("add");
 		Menu Clear = new Menu ("Clear");
+		Menu Run = new Menu ("RUN");
 		MenuItem addPackman = new MenuItem("Add Packman");
 		MenuItem addFruit = new MenuItem("Add Fruit");
 		MenuItem addCsv = new MenuItem("Add Csv");
 		MenuItem saveToKml = new MenuItem("Save To Kml");
 		MenuItem clear = new MenuItem("Clear Game");
-		
+		MenuItem RunGame = new MenuItem("Run Game");
 		MenuBar menuBar = new MenuBar();
 		this.setMenuBar(menuBar);
 		menuBar.add(Menu);
 		menuBar.add(add);
 		menuBar.add(Clear);
+		menuBar.add(Run);
 		Clear.add(clear);
 		add.add(addPackman);
 		add.add(addFruit);
+		Run.add(RunGame);
 		Menu.add(addCsv);
 		Menu.add(saveToKml);
 		class addpackman implements ActionListener{
@@ -97,8 +105,19 @@ public class gameBoard extends JFrame //implements MouseListener
 					FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", "csv");
 					fileChooser.setFileFilter(filter);
 					fileChooser.showOpenDialog(null);
-					File file = fileChooser.getSelectedFile();
+					file = fileChooser.getSelectedFile();
+					data= new CsvData(file);
+					ImageBackground.setGame(data);
 			
+			}
+			
+		}
+		class Rungame implements ActionListener{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ImageBackground.RunGame();
+
 			}
 			
 		}
@@ -106,6 +125,7 @@ public class gameBoard extends JFrame //implements MouseListener
 		clear.addActionListener(new cleargame());
 		addFruit.addActionListener(new addfruit());
 		addPackman.addActionListener(new addpackman());
+		RunGame.addActionListener(new Rungame());
 	}
 	
 

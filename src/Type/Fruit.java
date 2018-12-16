@@ -15,10 +15,12 @@ public class Fruit {
 	private String id;
 	final int rad=1;
 	public Point3D p;
-	public Fruit(Point3D p){
+	public Fruit(Point3D p,String id){
 		this.p=p;
+		this.id=id;
 		
 	}
+	
 	/**
 	 * A constructor  ,gets a csvData and index,finding the values of the lat,lon,alt of the specific fruit ,id.
 	 * @param d1
@@ -32,8 +34,8 @@ public class Fruit {
 		int indexX=d1.getIndexOfHeader("Lat");
 		int indexY=d1.getIndexOfHeader("Lon");
 		int indexZ=d1.getIndexOfHeader("Alt");
-		double x=Double.parseDouble(s[indexX]);
-		double y=Double.parseDouble(s[indexY]);
+		double x=Double.parseDouble(s[indexY]);
+		double y=Double.parseDouble(s[indexX]);
 		double z=Double.parseDouble(s[indexZ]);
 		int indexOfid=d1.getIndexOfHeader("id");
 		this.id = s[indexOfid];
@@ -45,7 +47,7 @@ public class Fruit {
 	
 	
 	public String toString() {
-		return id+",Fruit";
+		return id+",Fruit"+p;
 		
 	}
 	

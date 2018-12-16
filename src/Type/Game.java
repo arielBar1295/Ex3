@@ -1,6 +1,8 @@
 package Type;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Fileformat.CsvData;
 
@@ -8,6 +10,10 @@ public class Game {
 	private ArrayList<Packman> packman;
 	private ArrayList<Fruit> fruit;
 	public CsvData d;
+	public Game () {
+		packman = new ArrayList<Packman> ();
+		fruit = new ArrayList<Fruit> ();
+	}
 	public Game(CsvData d) {
 		packman = new ArrayList<Packman> ();
 		fruit = new ArrayList<Fruit> ();
@@ -23,6 +29,8 @@ public class Game {
 		if(d.getElement("Type", i).equals("P")) {
 			
 			Packman p=new Packman(d,i);
+			String time=new SimpleDateFormat("yyyy-dd-MM hh:mm:ss").format(Calendar.getInstance().getTime());
+			p.setTimeStemp(time);
 			packman.add(p);
 		}
 		else {

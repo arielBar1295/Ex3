@@ -1,4 +1,5 @@
 package Fileformat;
+import java.io.File;
 import java.util.ArrayList;
 
 import Geom.Point3D;
@@ -20,6 +21,10 @@ public class CsvData {
 		//filling the arrayList with information by the csvReader which gets a location.
 		a1=c.csvReader(s);
 		//filling the header array with the first line of the arrayList
+		header=a1.get(0);
+	}
+	public CsvData(File file) {
+		a1=c.csvReader(file);
 		header=a1.get(0);
 	}
 

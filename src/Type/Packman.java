@@ -23,11 +23,15 @@ public class Packman {
 	private double radiusOfeat;
 	private double time;
 	private MyCoords m=new MyCoords();
-	private ArrayList<String> path;  //holding the id of the fruits which this pacman has already eat .
-	public Packman(Point3D p) {
+	private ArrayList<shortestTime> path;  //holding the id of the fruits which this pacman has already eat .
+	private String timeStemp;
+	public Packman(Point3D p,String id) {
 		this.p=p;
 		this.Speed=1;
 		this.radiusOfeat=1;
+		this.id=id;
+		this.time=0;
+		this.path=new ArrayList<shortestTime>();
 	}
 	/**
 	 * A constructor ,gets a csvData and index,finding the values of the lat,lon,alt of the specific pacman ,id, radius and speed.
@@ -47,20 +51,27 @@ public class Packman {
 		this.Speed=Double.parseDouble(s[indexOfspeed]);
 		this.radiusOfeat=Double.parseDouble(s[indexOfradius]);
 		this.id=s[indexOfid];
-		double x=Double.parseDouble(s[indexX]);
-		double y=Double.parseDouble(s[indexY]);
+		double x=Double.parseDouble(s[indexY]);
+		double y=Double.parseDouble(s[indexX]);
 		double z=Double.parseDouble(s[indexZ]);
 		this.p=new Point3D(x,y,z);
 		c= new Circle(this.p,rad);
 		time=0;
-		this.path=new ArrayList<String>();
+		this.path=new ArrayList<shortestTime>();
+		timeStemp="";
 		
+	}
+	public String getTimeStemp() {
+		return timeStemp;
+	}
+	public void setTimeStemp(String timeStemp) {
+		this.timeStemp = timeStemp;
 	}
 	/**
 	 * 
 	 * @return an arrayList which represents the path of eating 
 	 */
-	public ArrayList<String> getPath() {
+	public ArrayList<shortestTime> getPath() {
 		return path;
 	}
     /**

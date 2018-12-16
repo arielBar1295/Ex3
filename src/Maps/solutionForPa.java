@@ -58,8 +58,8 @@ public class solutionForPa {
 		}
 		//find the minimum time ,and create a new shortestTime.
 		int index=indexOfMinimum(times);
-		s=new shortestTime(fruit.get(index).getId(),p.getId(),times.get(index)+p.getTime());
-		System.out.println("shortestTime : "+times.get(index));
+		s=new shortestTime(fruit.get(index).getId(),p.getId(),times.get(index)+p.getTime(),fruit.get(index).p);
+		//System.out.println("shortestTime : "+times.get(index));
 		return s;
 	  
 	}

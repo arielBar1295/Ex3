@@ -17,17 +17,13 @@ public class Convert {
     
    final Point3D min=new Point3D(35.20238,32.10190);
    final Point3D max=new Point3D(35.21236,32.10569);
-   public static BufferedImage myImage; 
+ 
    /**
     * a constructor which reads an image.
     */
    public Convert()
    {
-		try {
-			 myImage = ImageIO.read(new File("C:\\Users\\ariel\\image.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
    }
    /**
     * the function normalize the points ,means after normalization the points will be between 0-1
@@ -44,12 +40,12 @@ public class Convert {
     * @param p is the point in pixel  
     * @return a new point in coordinates.
     */
-   public Point3D pixToCo(Point3D p) {
+   public Point3D pixToCo(Point3D p,double width,double height) {
 	   double y=0;
 	   
-	   double xPercent=normalize(p.x(),0,myImage.getWidth());
+	   double xPercent=normalize(p.x(),0,width);
 	   double x =xPercent*Math.abs(max.x()-min.x())+min.x();
-	   double yPercent=normalize(p.y(),0,myImage.getHeight());
+	   double yPercent=normalize(p.y(),0,height);
 	   if (yPercent>=0.5) {
 		    y=yPercent*Math.abs(max.y()-min.y())+min.y();
 		  
@@ -73,22 +69,29 @@ public class Convert {
     * @param p is the point in coordinates
     * @return a new point in pixels.
     */
-   public Point3D conToPix(Point3D p) {
+   public Point3D conToPix(Point3D p,double width,double height) {
 	   double y=0;
 	   double xPercent=normalize(p.x(),min.x() , max.x());
-	   double x =xPercent*Math.abs(myImage.getWidth()-0);
+	   double x =xPercent*Math.abs(width-0);
 	   double yPercent = normalize(p.y(), min.y(), max.y());
 	   if (yPercent>=0.5) {
-		   y=yPercent*Math.abs(myImage.getHeight());
-		   double eps = myImage.getHeight() - y;
+		   y=yPercent*Math.abs(height);
+		   double eps = height - y;
 		   y= eps;
 	   }else if(yPercent<0.5) {
-		   y=yPercent*Math.abs(myImage.getHeight());
+		   y=yPercent*Math.abs(height);
 		   double eps =  y;
-		   y=myImage.getHeight()- eps;
+		   y=height- eps;
 	   }
-	   return new Point3D(x,y);
+	   return new Point3D((int)x,(int)y);
    }
+   public static void main(String[] args) {
+	   Point3D p =new Point3D(35.2035022,32.1045513,10.0);
+	   Convert c =new Convert();
+	   Point3D ans=c.conToPix(p, 1411, 554);
+	   System.out.println(ans);
+			   
+}
    
 
 

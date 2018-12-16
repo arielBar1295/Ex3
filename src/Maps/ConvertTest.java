@@ -17,13 +17,13 @@ private Convert c=new Convert();
 	@Test
 	void pixToCoordsTest() {
 		Point3D expected=new Point3D(35.2089265457083,32.10214794392523,0.0);
-		Point3D actual=c.pixToCo(pointInPix);
+		Point3D actual=c.pixToCo(pointInPix,1433,600);
 		assertTrue(expected.equals(actual));
 	}
 	@Test
 	void coordsToPixTest() {
 		Point3D expected=new Point3D(940.0000000000214,600.0000000004387,0.0);
-		Point3D actual=c.conToPix(new Point3D(35.2089265457083,32.10214794392523,0.0));
+		Point3D actual=c.conToPix(new Point3D(35.2089265457083,32.10214794392523,0.0),1433,600);
 		assertTrue(expected.equals(actual));
 	}
 

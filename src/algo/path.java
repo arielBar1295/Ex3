@@ -50,7 +50,6 @@ public class path {
 		while(counter!=0) {
 			//Gonig over the arrayList of the pacman , find for each pacman the closest fruit by using "solutionForPa",add to the array of solutin.
 			for (int i = 0; i < packman.size(); i++) {
-				System.out.println(i+" : ");
 				solutionForPa p=new solutionForPa(packman.get(i),fruit);
 				shortestTime s=p.solution();
 				solution.add(s);
@@ -58,15 +57,16 @@ public class path {
 			//Going over the arrayList of solution ,find the minimum time ,check if the fruit is free,if it is , remove from the list and add to the temp list ,set the location and time of the pacman ,in the end remove the fruit .
 			while(!this.solution.isEmpty()) {
 			int indexMinTime=findMinTime(solution);
+			System.out.println(indexMinTime);
 			if(isIn(indexMinTime,temp)) {
 				temp.add(solution.get(indexMinTime));
 				int indexP=findIndexOfP(solution.get(indexMinTime).getPackmanId(),packman );
-				
+				//System.out.println("indexP: "+indexP);
 				this.packman.get(indexP).setTime(solution.get(indexMinTime).getTime()+packman.get(indexP).getTime());
-				System.out.println("indexP: "+indexP);
-				this.packman.get(indexP).getPath().add(solution.get(indexMinTime).getFruitId());
+				
+				this.packman.get(indexP).getPath().add(solution.get(indexMinTime));
 				int indexF=findIndexOfF(solution.get(indexMinTime).getFruitId(), fruit);
-				System.out.println("indexF: "+indexF);
+				//System.out.println("indexF: "+indexF);
 				//need to calculate the coords in dis-raduis and then create a new point
 				Point3D p=m.vector3D(packman.get(indexP).getPoint(), fruit.get(indexF).getPoint());
                 this.packman.get(indexP).translate(p);
@@ -156,22 +156,23 @@ return temp;
 
 	
 }
-//public static void main(String[] args) {
-//	 CsvData d1=new CsvData("C:\\Users\\ariel\\Desktop\\Ex3\\game_1543684662657.csv");
-//	 Game g= new Game(d1);
-//	 path p = new path(g);
-//	 p.pathTofruit();
-//	 
-//	 for (int i = 0; i < g.getPackman().size() ;i++) {
-//		// String s="";
-//		 System.out.println(g.getPackman().get(i).getPath());
-//		 System.out.println(g.getPackman().get(i).getPoint());
-//
-//	}
-//		for (int i = 0; i <g.getFruit().size(); i++) {
-//			System.out.println(g.getFruit().get(i).toString());
-//		}
-//}
+public static void main(String[] args) {
+	 CsvData d1=new CsvData("C:\\Users\\moshe\\OneDrive\\Documents\\game_1543685769754.csv");
+	 Game g= new Game(d1);
+	 path p = new path(g);
+	 p.pathTofruit();
+	 
+	 for (int i = 0; i < g.getPackman().size() ;i++) {
+		// String s="";
+		 System.out.println(i+":");
+		 for (int j = 0; j <g.getPackman().get(i).getPath().size(); j++) {
+			System.out.print(g.getPackman().get(i).getPath().get(j).getFruitId()+",");
+		}
+		 System.out.println();
+
+	}
+
+}
 
 }
 
