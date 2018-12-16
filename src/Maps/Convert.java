@@ -24,7 +24,7 @@ public class Convert {
    public Convert()
    {
 		try {
-			 myImage = ImageIO.read(new File("C:\\Users\\moshe\\eclipse-workspace\\test\\src\\test\\myImage.png"));
+			 myImage = ImageIO.read(new File("C:\\Users\\ariel\\image.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

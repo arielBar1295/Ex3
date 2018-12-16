@@ -8,6 +8,9 @@ import Geom.Circle;
 import Geom.Point3D;
 
 public class Packman {
+	/**
+	 * This class represents a single pacman 
+	 */
 	private Circle c;
 	public CsvData d;
 	private int index;
@@ -20,13 +23,17 @@ public class Packman {
 	private double radiusOfeat;
 	private double time;
 	private MyCoords m=new MyCoords();
-	private ArrayList<String> path;
+	private ArrayList<String> path;  //holding the id of the fruits which this pacman has already eat .
 	public Packman(Point3D p) {
 		this.p=p;
 		this.Speed=1;
 		this.radiusOfeat=1;
 	}
-	
+	/**
+	 * A constructor ,gets a csvData and index,finding the values of the lat,lon,alt of the specific pacman ,id, radius and speed.
+	 * @param d1 is the csvData
+	 * @param index is the line for the single pacman.
+	 */
 	public Packman(CsvData d1,int index) {
 		this.d=d1;
 		this.index=index;
@@ -49,10 +56,17 @@ public class Packman {
 		this.path=new ArrayList<String>();
 		
 	}
+	/**
+	 * 
+	 * @return an arrayList which represents the path of eating 
+	 */
 	public ArrayList<String> getPath() {
 		return path;
 	}
-
+    /**
+     * 
+     * @return the location of the pacman
+     */
 	public double getTime() {
 		return time;
 	}

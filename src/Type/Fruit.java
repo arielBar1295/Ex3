@@ -5,6 +5,9 @@ import Geom.Circle;
 import Geom.Point3D;
 
 public class Fruit {
+	/**
+	 * This class represents a single fruit.
+	 */
 	private Circle c;
 	public CsvData data;
 	private int index;
@@ -16,6 +19,11 @@ public class Fruit {
 		this.p=p;
 		
 	}
+	/**
+	 * A constructor  ,gets a csvData and index,finding the values of the lat,lon,alt of the specific fruit ,id.
+	 * @param d1
+	 * @param index
+	 */
 	public Fruit(CsvData d1,int index){
 	
 		this.data=d1;

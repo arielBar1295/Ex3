@@ -29,7 +29,7 @@ public class ImageBackground extends JPanel implements MouseListener
 	private String type;
 	public ImageBackground() {
 		try {
-			 myImage = ImageIO.read(new File("C:\\Users\\moshe\\eclipse-workspace\\test\\src\\test\\myImage.png"));
+			 myImage = ImageIO.read(new File("C:\\Users\\ariel\\eclipse-workspace\\Ex3\\src\\GUI\\image.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,10 @@
 package Type;
-
+/**
+ * This object contains a pacman and a Fruit ID and the time it takes the pacman eat the specific fruit.
+ * The class contains getters and setters.
+ * @author ariel and moshe
+ *
+ */
 public class shortestTime {
 private String fruitId;
 private String packmanId;
