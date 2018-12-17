@@ -16,7 +16,7 @@ public class Packman {
 	private int index;
 	private String[] s;
 	public String id;
-	final int rad=3;
+	final int rad=3;  
     private Point3D p;
 
 	private double Speed;
@@ -26,12 +26,13 @@ public class Packman {
 	private ArrayList<shortestTime> path;  //holding the id of the fruits which this pacman has already eat .
 	private String timeStemp;
 	public Packman(Point3D p,String id) {
-		this.p=p;
+		this.p=p; 
 		this.Speed=1;
 		this.radiusOfeat=1;
 		this.id=id;
 		this.time=0;
 		this.path=new ArrayList<shortestTime>();
+		
 	}
 	/**
 	 * A constructor ,gets a csvData and index,finding the values of the lat,lon,alt of the specific pacman ,id, radius and speed.
@@ -59,10 +60,12 @@ public class Packman {
 		time=0;
 		this.path=new ArrayList<shortestTime>();
 		timeStemp="";
+//		shortestTime sho= new shortestTime("0","0",0,this.p);
+//		this.path.add(sho);
 		
 	}
 	public String getTimeStemp() {
-		return timeStemp;
+		return timeStemp; 
 	}
 	public void setTimeStemp(String timeStemp) {
 		this.timeStemp = timeStemp;

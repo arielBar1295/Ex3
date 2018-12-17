@@ -15,7 +15,7 @@ private double time;
 private Point3D p;
 
 
-public shortestTime(String idF,String idP,double time,Point3D _p) {
+public shortestTime(String idF,String idP,double time,Point3D _p) { 
 	this.fruitId=idF;
 	this.packmanId=idP;
 	this.time=time;

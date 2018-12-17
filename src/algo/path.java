@@ -25,9 +25,9 @@ public class path {
 	//private ArrayList<Fruit> tempF;
 	private MyCoords m;
 	
-	public path(Game game) {
+	public path(Game game) {   
 		this.packman=game.getPackman();
-		this.fruit=game.copyF();
+		this.fruit=game.copyF(); 
 		this.solution=new ArrayList<shortestTime>();
 		this.temp=new ArrayList<shortestTime>();
 		m=new MyCoords();
@@ -38,6 +38,8 @@ public class path {
 		 point= new ArrayList<Point3D> ();
 		for (int i = 0; i < packman.size(); i++) {
 			point.add(packman.get(i).getPoint());
+			shortestTime sho= new shortestTime("-1","-1",0,packman.get(i).getPoint());
+			packman.get(i).getPath().add(sho);
 		}
 		
 	}
@@ -53,11 +55,12 @@ public class path {
 				solutionForPa p=new solutionForPa(packman.get(i),fruit);
 				shortestTime s=p.solution();
 				solution.add(s);
+				
 			}
 			//Going over the arrayList of solution ,find the minimum time ,check if the fruit is free,if it is , remove from the list and add to the temp list ,set the location and time of the pacman ,in the end remove the fruit .
 			while(!this.solution.isEmpty()) {
 			int indexMinTime=findMinTime(solution);
-			System.out.println(indexMinTime);
+			//System.out.println(indexMinTime);
 			if(isIn(indexMinTime,temp)) {
 				temp.add(solution.get(indexMinTime));
 				int indexP=findIndexOfP(solution.get(indexMinTime).getPackmanId(),packman );
@@ -83,6 +86,7 @@ public class path {
 			}
 			}
 			this.temp.removeAll(temp);
+			System.out.println();
 		}
 		for (int i = 0; i < packman.size(); i++) {
 			packman.get(i).setP(point.get(i));

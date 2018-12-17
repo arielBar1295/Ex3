@@ -41,6 +41,20 @@ public class ImageBackground extends JPanel implements MouseListener
 	private int counterP;
 	private int counterF;
 	private boolean run;
+	private String saveTo;
+	
+	
+	
+	public String getSaveTo() {
+		return saveTo;
+	}
+
+
+	public void setSaveTo(String saveTo) {
+		this.saveTo = saveTo;
+	}
+
+
 	public ImageBackground() {
 		try {
 			myImage = ImageIO.read(new File("C:\\Users\\moshe\\git\\Ex3\\src\\GUI\\image.png"));
@@ -54,7 +68,10 @@ public class ImageBackground extends JPanel implements MouseListener
 		counterP=0;
 		counterF=0;
 		run=false;
+		saveTo="";
+
 	}
+
 
 	public void paint (Graphics g) {
 
@@ -98,58 +115,86 @@ public class ImageBackground extends JPanel implements MouseListener
 				g.fillOval((int)x, (int)y, r, r);	
 			}
 		}
+		//System.out.println("paint "+run);
 		if(run) {
 
 			for (int i = 0; i < game.getPackman().size(); i++) {
-				Point3D origin=game.getPackman().get(i).getPoint();
-				for (int j = 0; j <game.getPackman().get(i).getPath().size(); j++) {
-					Point3D packmanpoint=c.conToPix(game.getPackman().get(i).getPoint(), this.getWidth(), this.getHeight());
+				Point3D origin=game.getPackman().get(i).getPath().get(0).getP();
+				for (int j = 1; j <game.getPackman().get(i).getPath().size(); j++) {
+					Point3D packmanpoint=c.conToPix(game.getPackman().get(i).getPath().get(0).getP(), this.getWidth(), this.getHeight());
 					Point3D fruitpoint=c.conToPix(game.getPackman().get(i).getPath().get(j).getP(),this.getWidth(),this.getHeight());
 					g.drawLine(packmanpoint.ix(),packmanpoint.iy() ,fruitpoint.ix(), fruitpoint.iy());
-					game.getPackman().get(i).setP(game.getPackman().get(i).getPath().get(j).getP());
+					game.getPackman().get(i).getPath().get(0).setP(game.getPackman().get(i).getPath().get(j).getP());
 				}
-				game.getPackman().get(i).setP(origin);
+				game.getPackman().get(i).getPath().get(0).setP(origin);
 			}
 		}
+
+		
 	}
 	public void setGame(CsvData data) {
 		this.game=new Game(data);
+
 		x=1;
 		y=1;
 		repaint();
 
 	}
 	public void RunGame() {
+		System.out.println(run);
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			game.getPackman().get(i).getPath().removeAll(game.getPackman().get(i).getPath());
 		}
 		Path=new path(game);
 		Path.pathTofruit();
+		for (int i = 0; i < game.getPackman().size(); i++) {
+			for (int j = 0; j <game.getPackman().get(i).getPath().size(); j++) {
+				System.out.print("j: "+game.getPackman().get(i).getPath().get(j).getFruitId());
+			}
+			System.out.println();
+		}
 		run=true;
+		//System.out.println(run);
+		
 		repaint();
+		move m;
+	
+		for (int i = 0; i < game.getPackman().size(); i++) {
+			//System.out.println(game.getPackman().get(i).getTime());
+			 m=new move(this,game.getPackman().get(i),1);
+			
+			m.start();
+		
+		}
+		
+		
 	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 //		System.out.println("mouse Clicked");
 //		System.out.println("("+ arg0.getX() + "," + arg0.getY() +")");
+		run=false;
 		x = arg0.getX();
 		y = arg0.getY();
 		Point3D p=new Point3D(x,y);
 		Point3D newPoint=c.pixToCo(p, this.getWidth(), this.getHeight());
+		this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
+		this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
 		if(type.equals("packman")) {
 			//Packman.add(p);
-			System.out.println(newPoint);
+			//System.out.println(newPoint);
 			String id=Integer.toString(counterP);
 			counterP++;
 			game.getPackman().add(new Packman(newPoint,id));
+			
 		}
 		if (type.equals("fruit"))
 		{
 			String id=Integer.toString(counterF);
 			counterF++;
-			System.out.println(newPoint);
+			//System.out.println(newPoint);
 			game.getFruit().add(new Fruit(newPoint,id));
-			//			Fruit.add(p);
+				//	Fruit.add(p);
 		}
 		repaint();
 
@@ -187,11 +232,20 @@ public class ImageBackground extends JPanel implements MouseListener
 		game.getPackman().removeAll(game.getPackman());
 		game.getFruit().removeAll(game.getFruit());
 		repaint();
+		run=false;
 
 
 	}
+public synchronized void update() {
+
+repaint();
+}
 
 
-
+public void saveToKML() {
+	ToKml k = new ToKml();
+	k.projectToKml(game, this.saveTo);
+	
+}
 }
 

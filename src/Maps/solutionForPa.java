@@ -25,7 +25,7 @@ public class solutionForPa {
 	 * @param fruit is list of the fruits.
 	 */
 	
-	public solutionForPa(Packman p,ArrayList<Fruit> fruit) {
+	public solutionForPa(Packman p,ArrayList<Fruit> fruit) { 
 		this.fruit=fruit;
 		this.p=p;
 	}
@@ -50,7 +50,7 @@ public class solutionForPa {
 			if (dis == 0 ) {
 				 time =0;
 			}else {
-			 time=(dis-p.getRadiusOfeat())/p.getSpeed();//check if we need to add +p.getTime(); 
+			 time=(dis-p.getRadiusOfeat())/p.getSpeed();// +p.getTime(); 
 			}
 
 			times.add(time);

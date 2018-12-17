@@ -11,7 +11,7 @@ public class Game {
 	private ArrayList<Fruit> fruit;
 	public CsvData d;
 	public Game () {
-		packman = new ArrayList<Packman> ();
+		packman = new ArrayList<Packman> (); 
 		fruit = new ArrayList<Fruit> ();
 	}
 	public Game(CsvData d) {
@@ -22,16 +22,17 @@ public class Game {
 		
 	}
 	private void init() {
-	for(int i=1;i<d.getA1().size();i++) {
+	for(int i=1;i<d.getA1().size();i++) { 
 		
 		
 		
 		if(d.getElement("Type", i).equals("P")) {
 			
 			Packman p=new Packman(d,i);
-			String time=new SimpleDateFormat("yyyy-dd-MM hh:mm:ss").format(Calendar.getInstance().getTime());
+			String time=new SimpleDateFormat("yyyy-dd-MM,hh:mm:ss").format(Calendar.getInstance().getTime());
+			System.out.println(time);
 			p.setTimeStemp(time);
-			packman.add(p);
+			packman.add(p); 
 		}
 		else {
 			

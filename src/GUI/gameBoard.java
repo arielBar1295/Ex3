@@ -53,6 +53,7 @@ public class gameBoard extends JFrame //implements MouseListener
 		MenuItem addPackman = new MenuItem("Add Packman");
 		MenuItem addFruit = new MenuItem("Add Fruit");
 		MenuItem addCsv = new MenuItem("Add Csv");
+		MenuItem saveToCSV = new MenuItem("Save To CSV");
 		MenuItem saveToKml = new MenuItem("Save To Kml");
 		MenuItem clear = new MenuItem("Clear Game");
 		MenuItem RunGame = new MenuItem("Run Game");
@@ -68,6 +69,7 @@ public class gameBoard extends JFrame //implements MouseListener
 		Run.add(RunGame);
 		Menu.add(addCsv);
 		Menu.add(saveToKml);
+		Menu.add(saveToCSV);
 		class addpackman implements ActionListener{
 
 			@Override
@@ -121,11 +123,29 @@ public class gameBoard extends JFrame //implements MouseListener
 			}
 			
 		}
+		class saveTokml implements ActionListener{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fileChooser= new JFileChooser();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("KML file", "kml");
+				fileChooser.setFileFilter(filter);
+				fileChooser.showSaveDialog(null);
+				File file2=fileChooser.getSelectedFile();
+				String saveFile=file2.getPath()+".kml";
+				ImageBackground.setSaveTo(saveFile);
+				ImageBackground.saveToKML();
+				System.out.println(saveFile);
+			}
+			
+		}
 		addCsv.addActionListener(new Addcsv());
 		clear.addActionListener(new cleargame());
 		addFruit.addActionListener(new addfruit());
 		addPackman.addActionListener(new addpackman());
 		RunGame.addActionListener(new Rungame());
+		saveToKml.addActionListener(new saveTokml());
 	}
 	
 
