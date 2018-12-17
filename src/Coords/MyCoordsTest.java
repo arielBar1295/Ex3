@@ -18,22 +18,7 @@ class MyCoordsTest {
 	MyCoords m= new MyCoords();
 	double arr[] =m.azimuth_elevation_dist(pTest, p2Test);
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
+	
 	
 	@Test
 	void isValidTest() {

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import Fileformat.CsvData;
 import Type.Game;
+import Type.shortestTime;
 
 class pathTest {
 private	CsvData d1=new CsvData("C:\\Users\\ariel\\Desktop\\Ex3\\game_1543684662657.csv");
@@ -20,15 +21,21 @@ private	 path p = new path(g);
 	 
 	@Test
 	void pathTofruitTest() {
-//		 p.pathTofruit();
-//		ArrayList<String>actual=g.getPackman().get(0).getPath();
-//		ArrayList<String>expected= new ArrayList<String>();
-//		expected.add("3");
-//		expected.add("2");
-//		expected.add("1");
-//		expected.add("0");
-//		
-//		assertTrue(expected.equals(actual));
+		 p.pathTofruit();
+		 int index=0;
+		ArrayList<shortestTime>actual=g.getPackman().get(0).getPath();
+		ArrayList<String>actualIdF=new ArrayList<String>();
+		actualIdF.add(actual.get(index++).getFruitId());
+		actualIdF.add(actual.get(index++).getFruitId());
+		actualIdF.add(actual.get(index++).getFruitId());
+		actualIdF.add(actual.get(index++).getFruitId());
+		ArrayList<String>expectedIDf= new ArrayList<String>();
+		expectedIDf.add("3");
+		expectedIDf.add("2");
+		expectedIDf.add("1");
+		expectedIDf.add("0");
+		
+		assertTrue(expectedIDf.equals(actualIdF));
 		
 		
 	}

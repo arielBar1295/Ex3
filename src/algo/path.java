@@ -42,13 +42,13 @@ public class path {
 		
 	}
 	/**
-	 * The function 
+	 * The function calculate the path of the specific game by finding the the minimum time for each pacman to eat some fruit ,from all the pacman take the one with the minimum time .
 	 */
 	public void pathTofruit() {
-		int counter=fruit.size();
 		//stop running when there are no fruits left in the array.
+		int counter=fruit.size();
 		while(counter!=0) {
-			//Gonig over the arrayList of the pacman , find for each pacman the closest fruit by using "solutionForPa",add to the array of solutin.
+			//Going over the arrayList of the pacman , find for each pacman the closest fruit by using "solutionForPa",add to the array of solutin.
 			for (int i = 0; i < packman.size(); i++) {
 				solutionForPa p=new solutionForPa(packman.get(i),fruit);
 				shortestTime s=p.solution();
