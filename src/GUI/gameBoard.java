@@ -15,8 +15,13 @@ import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Fileformat.CsvData;
 
-
-public class gameBoard extends JFrame //implements MouseListener
+/**
+ * The class represents the main frame.
+ * creating the menu ,using the ImageBackground for drawing the elements,the map .
+ * @author moshe and ariel
+ *
+ */
+public class gameBoard extends JFrame 
 {
 	ImageBackground ImageBackground;
 	public BufferedImage myImage1;
@@ -29,8 +34,8 @@ public class gameBoard extends JFrame //implements MouseListener
 
 	private void initGUI() {
 		try {
-			 myImage1 = ImageIO.read(new File("pacman.png"));
-			
+			myImage1 = ImageIO.read(new File("pacman.png"));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -64,24 +69,27 @@ public class gameBoard extends JFrame //implements MouseListener
 		Menu.add(addCsv);
 		Menu.add(saveToKml);
 		Menu.add(saveToCSV);
+		//***ActionListener to add packman to the game***
 		class addpackman implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				ImageBackground.setType("packman");
 			}
-			
+
 		}
+		//***ActionListener to add fruit to the game***
 		class addfruit implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				ImageBackground.setType("fruit");
 			}
-			
+
 		}
+		//***ActionListener to Clear game***
 		class cleargame implements ActionListener{
 
 			@Override
@@ -89,26 +97,28 @@ public class gameBoard extends JFrame //implements MouseListener
 				ImageBackground.clear();
 
 			}
-			
+
 		}
+		//***ActionListener to load csv***
 		class Addcsv implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-					JFileChooser fileChooser= new JFileChooser();
-					fileChooser.setAcceptAllFileFilterUsed(false);
-					FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", "csv");
-					fileChooser.setFileFilter(filter);
-					if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+
+				JFileChooser fileChooser= new JFileChooser();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", "csv");
+				fileChooser.setFileFilter(filter);
+				if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					file = fileChooser.getSelectedFile();
 					data= new CsvData(file);
 					ImageBackground.setGame(data);
-					}
-			
+				}
+
 			}
-			
+
 		}
+		//***ActionListener to Run game***
 		class Rungame implements ActionListener{
 
 			@Override
@@ -116,8 +126,9 @@ public class gameBoard extends JFrame //implements MouseListener
 				ImageBackground.RunGame();
 
 			}
-			
+
 		}
+		//***ActionListener to save to kml***
 		class saveTokml implements ActionListener{
 
 			@Override
@@ -126,24 +137,45 @@ public class gameBoard extends JFrame //implements MouseListener
 				fileChooser.setAcceptAllFileFilterUsed(false);
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("KML file", "kml");
 				fileChooser.setFileFilter(filter);
-				if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-				File file2=fileChooser.getSelectedFile();
-				String saveFile=file2.getPath()+".kml";
-				ImageBackground.setSaveTo(saveFile);
-				ImageBackground.saveToKML();
-				System.out.println(saveFile);
+				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file2=fileChooser.getSelectedFile();
+					String saveFile=file2.getPath()+".kml";
+					ImageBackground.setSaveTo(saveFile);
+					ImageBackground.saveToKML();
+					System.out.println(saveFile);
 				}
 			}
-			
+
 		}
+		//***ActionListener to save to csv***
+		class saveTocsv implements ActionListener{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fileChooser= new JFileChooser();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV flie", "csv");
+				fileChooser.setFileFilter(filter);
+				if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file2=fileChooser.getSelectedFile();
+					String saveFile=file2.getPath()+".csv";
+					ImageBackground.setSaveTo(saveFile);
+					ImageBackground.saveToCSV();
+					System.out.println(saveFile);
+				}
+			}
+
+		}
+
 		addCsv.addActionListener(new Addcsv());
 		clear.addActionListener(new cleargame());
 		addFruit.addActionListener(new addfruit());
 		addPackman.addActionListener(new addpackman());
 		RunGame.addActionListener(new Rungame());
 		saveToKml.addActionListener(new saveTokml());
+		saveToCSV.addActionListener(new saveTocsv());
 	}
-	
+
 
 	public static void main(String[] args) {
 		new gameBoard();

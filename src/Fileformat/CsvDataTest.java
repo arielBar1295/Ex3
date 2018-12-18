@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 
 class CsvDataTest {
-private  CsvData dTest=new CsvData("C:\\Users\\ariel\\Desktop\\Ex3\\game_1543684662657.csv");
+private  CsvData dTest=new CsvData("game_1543684662657.csv");
 
 @Test
 void getIndexOfHeaderTest() {

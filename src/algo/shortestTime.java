@@ -1,4 +1,4 @@
-package Type;
+package algo;
 
 import Geom.Point3D;
 
@@ -13,13 +13,21 @@ private String fruitId;
 private String packmanId;
 private double time;
 private Point3D p;
+private int Weight;
 
 
-public shortestTime(String idF,String idP,double time,Point3D _p) { 
+public shortestTime(String idF,String idP,double time,Point3D _p,int _Weight) { 
 	this.fruitId=idF;
 	this.packmanId=idP;
 	this.time=time;
 	this.p=_p;
+	Weight=_Weight;
+}
+public int getWeight() {
+	return Weight;
+}
+public void setWeight(int weight) {
+	Weight = weight;
 }
 public String getFruitId() {
 	return fruitId;

@@ -12,34 +12,36 @@ import org.junit.jupiter.api.Test;
 
 import Fileformat.CsvData;
 import Type.Game;
-import Type.shortestTime;
 
-class pathTest {
-private	CsvData d1=new CsvData("C:\\Users\\ariel\\Desktop\\Ex3\\game_1543684662657.csv");
-private	Game g= new Game(d1);
-private	 path p = new path(g);
-	 
+
+class ShortestPathAlgoTest {
+	private	CsvData d1=new CsvData("game_1543684662657.csv");
+	private	Game g= new Game(d1);
+	private	 ShortestPathAlgo p = new ShortestPathAlgo(g);
+
 	@Test
 	void pathTofruitTest() {
-		 p.pathTofruit();
-		 int index=0;
+		p.pathTofruit();
+		int index=0;
 		ArrayList<shortestTime>actual=g.getPackman().get(0).getPath();
 		ArrayList<String>actualIdF=new ArrayList<String>();
 		actualIdF.add(actual.get(index++).getFruitId());
 		actualIdF.add(actual.get(index++).getFruitId());
 		actualIdF.add(actual.get(index++).getFruitId());
 		actualIdF.add(actual.get(index++).getFruitId());
+		actualIdF.add(actual.get(index++).getFruitId());
 		ArrayList<String>expectedIDf= new ArrayList<String>();
+		expectedIDf.add("-1");
 		expectedIDf.add("3");
 		expectedIDf.add("2");
 		expectedIDf.add("1");
 		expectedIDf.add("0");
-		
+
 		assertTrue(expectedIDf.equals(actualIdF));
-		
-		
+
+
 	}
 
-	
+
 
 }

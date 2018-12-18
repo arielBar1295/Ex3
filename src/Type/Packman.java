@@ -6,6 +6,7 @@ import Coords.MyCoords;
 import Fileformat.CsvData;
 import Geom.Circle;
 import Geom.Point3D;
+import algo.shortestTime;
 
 public class Packman {
 	/**
@@ -18,22 +19,27 @@ public class Packman {
 	public String id;
 	final int rad=3;  
     private Point3D p;
-
 	private double Speed;
 	private double radiusOfeat;
 	private double time;
 	private MyCoords m=new MyCoords();
 	private ArrayList<shortestTime> path;  //holding the id of the fruits which this pacman has already eat .
 	private String timeStemp;
-	public Packman(Point3D p,String id) {
+	private int Weight;
+	
+	
+	public Packman(Point3D p,String id,String _timestemp) {
 		this.p=p; 
 		this.Speed=1;
 		this.radiusOfeat=1;
 		this.id=id;
 		this.time=0;
 		this.path=new ArrayList<shortestTime>();
+		this.timeStemp=_timestemp;
+		this.Weight=0;
 		
 	}
+
 	/**
 	 * A constructor ,gets a csvData and index,finding the values of the lat,lon,alt of the specific pacman ,id, radius and speed.
 	 * @param d1 is the csvData
@@ -60,8 +66,7 @@ public class Packman {
 		time=0;
 		this.path=new ArrayList<shortestTime>();
 		timeStemp="";
-//		shortestTime sho= new shortestTime("0","0",0,this.p);
-//		this.path.add(sho);
+		Weight=0;
 		
 	}
 	public String getTimeStemp() {
@@ -115,5 +120,11 @@ public class Packman {
 	}
 	public void setP(Point3D p) {
 		this.p = p;
+	}
+	public int getWeight() {
+		return Weight;
+	}
+	public void setWeight(int weight) {
+		Weight = weight;
 	}
 }

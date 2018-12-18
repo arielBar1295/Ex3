@@ -15,10 +15,11 @@ public class Fruit {
 	private String id;
 	final int rad=1;
 	public Point3D p;
+	private int Weight;
 	public Fruit(Point3D p,String id){
 		this.p=p;
 		this.id=id;
-		
+		this.Weight=1;
 	}
 	
 	/**
@@ -37,15 +38,25 @@ public class Fruit {
 		double x=Double.parseDouble(s[indexY]);
 		double y=Double.parseDouble(s[indexX]);
 		double z=Double.parseDouble(s[indexZ]);
+		int indexW=d1.getIndexOfHeader("Speed/Weight");
 		int indexOfid=d1.getIndexOfHeader("id");
 		this.id = s[indexOfid];
 		this.p=new Point3D(x,y,z);
 		c= new Circle(this.p,rad);
+		this.Weight=Integer.parseInt(s[indexW]);
 		
 	}
 	
 	
 	
+	public int getWeight() {
+		return Weight;
+	}
+
+	public void setWeight(int weight) {
+		Weight = weight;
+	}
+
 	public String toString() {
 		return id+",Fruit"+p;
 		

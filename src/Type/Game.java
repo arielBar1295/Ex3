@@ -30,7 +30,6 @@ public class Game {
 			
 			Packman p=new Packman(d,i);
 			String time=new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss").format(Calendar.getInstance().getTime());
-			System.out.println(time);
 			p.setTimeStemp(time);
 			packman.add(p); 
 		}

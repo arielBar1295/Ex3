@@ -1,4 +1,4 @@
-package Maps;
+package algo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,13 +8,13 @@ import Fileformat.CsvData;
 import Type.Fruit;
 import Type.Game;
 import Type.Packman;
-import Type.shortestTime;
+
 /**
  * this class calculate the path between one pacman to each fruit
  * @author ariel and Moshe
  *
  */
-public class solutionForPa {
+public class solutionForPackman {
 	private ArrayList<Fruit> fruit;
 	private Packman p;
 	MyCoords m=new MyCoords();
@@ -25,7 +25,7 @@ public class solutionForPa {
 	 * @param fruit is list of the fruits.
 	 */
 	
-	public solutionForPa(Packman p,ArrayList<Fruit> fruit) { 
+	public solutionForPackman(Packman p,ArrayList<Fruit> fruit) { 
 		this.fruit=fruit;
 		this.p=p;
 	}
@@ -58,7 +58,8 @@ public class solutionForPa {
 		}
 		//find the minimum time ,and create a new shortestTime.
 		int index=indexOfMinimum(times);
-		s=new shortestTime(fruit.get(index).getId(),p.getId(),times.get(index)+p.getTime(),fruit.get(index).p);
+		s=new shortestTime(fruit.get(index).getId(),p.getId(),times.get(index)+p.getTime(),fruit.get(index).p,fruit.get(index).getWeight());
+		
 		//System.out.println("shortestTime : "+times.get(index));
 		return s;
 	  

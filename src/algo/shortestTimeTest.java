@@ -1,4 +1,4 @@
-package Type;
+package algo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,8 +19,7 @@ class shortestTimeTest {
 	private String idFruit="10";
 	private double time=2.456; 
 	private Point3D p=new Point3D(35.21035679,32.10362369);
-final shortestTime s=new shortestTime(idFruit,idPacman,time,p);
-
+final shortestTime s=new shortestTime(idFruit,idPacman,time,p,0); // add Weight.
      @BeforeEach
 	void setUp() throws Exception {
     	  String idPacman="2";
