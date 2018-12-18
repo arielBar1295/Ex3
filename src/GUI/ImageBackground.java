@@ -3,6 +3,7 @@ package GUI;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
@@ -25,7 +26,7 @@ import Type.Fruit;
 import Type.Game;
 import Type.Packman;
 import algo.path;
-
+import java.util.Random;
 
 
 public class ImageBackground extends JPanel implements MouseListener
@@ -42,7 +43,7 @@ public class ImageBackground extends JPanel implements MouseListener
 	private int counterF;
 	private boolean run;
 	private String saveTo;
-	
+	private Color[] co;
 	
 	
 	public String getSaveTo() {
@@ -57,7 +58,8 @@ public class ImageBackground extends JPanel implements MouseListener
 
 	public ImageBackground() {
 		try {
-			myImage = ImageIO.read(new File("C:\\Users\\moshe\\git\\Ex3\\src\\GUI\\image.png"));
+			myImage = ImageIO.read(new File("image.png"));
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,7 +71,7 @@ public class ImageBackground extends JPanel implements MouseListener
 		counterF=0;
 		run=false;
 		saveTo="";
-
+		
 	}
 
 
@@ -115,14 +117,18 @@ public class ImageBackground extends JPanel implements MouseListener
 				g.fillOval((int)x, (int)y, r, r);	
 			}
 		}
-		//System.out.println("paint "+run);
+		
 		if(run) {
 
 			for (int i = 0; i < game.getPackman().size(); i++) {
 				Point3D origin=game.getPackman().get(i).getPath().get(0).getP();
+				
 				for (int j = 1; j <game.getPackman().get(i).getPath().size(); j++) {
 					Point3D packmanpoint=c.conToPix(game.getPackman().get(i).getPath().get(0).getP(), this.getWidth(), this.getHeight());
 					Point3D fruitpoint=c.conToPix(game.getPackman().get(i).getPath().get(j).getP(),this.getWidth(),this.getHeight());
+					g.setColor(co[i]);
+					  Graphics2D g2d = (Graphics2D) g;
+				      g2d.setStroke(new BasicStroke(2.5F));
 					g.drawLine(packmanpoint.ix(),packmanpoint.iy() ,fruitpoint.ix(), fruitpoint.iy());
 					game.getPackman().get(i).getPath().get(0).setP(game.getPackman().get(i).getPath().get(j).getP());
 				}
@@ -142,6 +148,15 @@ public class ImageBackground extends JPanel implements MouseListener
 	}
 	public void RunGame() {
 		System.out.println(run);
+		co=new Color[ game.getPackman().size()];
+		for (int i = 0; i < game.getPackman().size(); i++) {
+			Random rand = new Random();
+			float r = rand.nextFloat();
+			float v = rand.nextFloat();
+			float b = rand.nextFloat();
+			Color randomColor = new Color(r, v, b);
+			co[i]=randomColor;
+		}
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			game.getPackman().get(i).getPath().removeAll(game.getPackman().get(i).getPath());
 		}
@@ -149,12 +164,12 @@ public class ImageBackground extends JPanel implements MouseListener
 		Path.pathTofruit();
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			for (int j = 0; j <game.getPackman().get(i).getPath().size(); j++) {
-				System.out.print("j: "+game.getPackman().get(i).getPath().get(j).getFruitId());
+				System.out.print("j: "+game.getPackman().get(i).getPath().get(j).getTime());
 			}
 			System.out.println();
 		}
 		run=true;
-		//System.out.println(run);
+		
 		
 		repaint();
 		move m;
@@ -243,7 +258,7 @@ repaint();
 
 
 public void saveToKML() {
-	ToKml k = new ToKml();
+	Path2Kml k = new Path2Kml();
 	k.projectToKml(game, this.saveTo);
 	
 }

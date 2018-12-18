@@ -29,7 +29,8 @@ public class gameBoard extends JFrame //implements MouseListener
 
 	private void initGUI() {
 		try {
-			 myImage1 = ImageIO.read(new File("C:\\Users\\moshe\\git\\Ex3\\src\\GUI\\pacman.png"));
+			 myImage1 = ImageIO.read(new File("pacman.png"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
