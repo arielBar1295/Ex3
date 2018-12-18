@@ -193,8 +193,16 @@ public class ImageBackground extends JPanel implements MouseListener
 		y = arg0.getY();
 		Point3D p=new Point3D(x,y);
 		Point3D newPoint=c.pixToCo(p, this.getWidth(), this.getHeight());
+		if(game.getFruit().size()>0&&game.getPackman().size()>0){
+			
+		
 		this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
 		this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
+		}
+		else {
+			this.counterF=0;
+			this.counterP=0;
+		}
 		if(type.equals("packman")) {
 			//Packman.add(p);
 			//System.out.println(newPoint);

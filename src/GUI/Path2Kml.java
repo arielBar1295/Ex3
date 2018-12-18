@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 
-
+import Geom.Point3D;
 import Type.Game;
 
 public class Path2Kml {
@@ -88,15 +88,24 @@ public static void  projectToKml(Game game ,String output) {
 		FileWriter fw = new FileWriter(output);
 		BufferedWriter bw = new BufferedWriter(fw);
 		int counter=0;
-		
+		Point3D pac=null;
+		Point3D f1=null;
 		for(int i=0;i<game.getPackman().size();i++) {
 			String fold="<Folder>\n"+"<name>"+"packman" + i+"</name>\n";
 		    String endfold="</Folder>\n";
      		content.add(fold);
      		int sum=0;
      		String []date=game.getPackman().get(i).getTimeStemp().split(",");
-     		for(int j=0;j<game.getPackman().get(i).getPath().size()-1;j++) {
-     			
+     		//Point3D pac=new Point3D(game.getPackman().get(i).getPoint());
+     		for(int j=0;j<game.getPackman().get(i).getPath().size();j++) {
+//     			if(j<game.getPackman().get(i).getPath().size()-1) {
+//     			 pac=new Point3D(game.getPackman().get(i).getPath().get(j).getP());
+//     			 f1=new Point3D(game.getPackman().get(i).getPath().get(j+1).getP());
+//     			}
+//     			else {
+//     				 pac=new Point3D(game.getPackman().get(i).getPath().get(j).getP());
+//         			 f1=new Point3D(game.getPackman().get(i).getPath().get(j).getP());
+//     			}
      			sum+=game.getPackman().get(i).getPath().get(j).getTime();
      			sum/=60;
      			System.out.println("sum: "+ sum);
@@ -105,10 +114,13 @@ public static void  projectToKml(Game game ,String output) {
      			System.out.println("themp: "+temp);
      			  String kmlelement ="<Placemark>\n" +
   						"<name>"+game.getPackman().get(i).getPath().get(j).getFruitId()+"</name>\n" +
+//     					 "<LineString>"+
+//  						"<coordinates>"+pac.x()+"&"+pac.y()+"&"+pac.z()+"&"+f1.x()+"&"+f1.y()+"</coordinates>"+
+//   					 "</LineString>"+
   						"<TimeStamp>\n"+
  						"<when>"+temp+"</when>\n"+
  						"</TimeStamp>\n"+
- 						//"<description>"+data[1]+"&"+data[2]+"</description>\n"+
+ 						//"<description>"+da1ta[1]+"&"+data[2]+"</description>\n"+
 						"<Point>\n"+
 						"<coordinates>"+game.getPackman().get(i).getPath().get(j).getP().x()+"&"+game.getPackman().get(i).getPath().get(j).getP().y()+"&"+game.getPackman().get(i).getPath().get(j).getP().z()+"</coordinates>" +
  						"</Point>\n" +
@@ -144,7 +156,7 @@ private static String addMin(String time,double timeF) {
 	} 
 	 Calendar cal = Calendar.getInstance();
 	 cal.setTime(d);
-	 
+	 cal.add(Calendar.HOUR, -2);
 	 cal.add(Calendar.MINUTE, (int)timeF);
 	 String newTime = df.format(cal.getTime());
 	 System.out.println("new :"+newTime);

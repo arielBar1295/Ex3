@@ -29,7 +29,7 @@ public class Game {
 		if(d.getElement("Type", i).equals("P")) {
 			
 			Packman p=new Packman(d,i);
-			String time=new SimpleDateFormat("yyyy-dd-MM,hh:mm:ss").format(Calendar.getInstance().getTime());
+			String time=new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss").format(Calendar.getInstance().getTime());
 			System.out.println(time);
 			p.setTimeStemp(time);
 			packman.add(p); 
