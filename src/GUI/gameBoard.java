@@ -18,7 +18,7 @@ import Fileformat.CsvData;
 /**
  * The class represents the main frame.
  * creating the menu ,using the ImageBackground for drawing the elements,the map .
- * @author moshe and ariel
+ * @author moshe and ariel.
  *
  */
 public class gameBoard extends JFrame 
