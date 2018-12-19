@@ -64,7 +64,7 @@ public class ImageBackground extends JPanel implements MouseListener
 		this.addMouseListener(this); 
 		game=new Game();
 		c=new Convert();
-		//for the packman and fruit id.
+		//for the packman and fruit id
 		if(game.getFruit().size()>0&&game.getPackman().size()>0){
             this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
 			this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
