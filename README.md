@@ -25,22 +25,22 @@
 <p>*Fruits-the class represent a single fruit which the pacman can eat , &nbsp;each fruit holds its own data such as:id ,weight,coordinates.</p>
 <p>*Packman-the class represents a single packman which can eat fruits.each pacman holds its own information such as: id,radiues of eat , speed , coordinates.</p>
 <p>*Game-the game represents a complete game including a collection of packmans and fruits.</p>
-<p>5)Maps:</p>
+<h2>Maps:</h2>
 <p>*Convert- converting from pixels to coordinates and the other way around</p>
 <p>*Way- creating points between packman/fruit to fruit ,by using the time elements from the constructor .</p>
 <p>this points will represents the movement of the specific packman .</p>
 <p>&nbsp;</p>
-<p>6)GUI</p>
+<h2>GUI</h2>
 <p>*imageBackground- the calss responsible for the image background and for the game,</p>
 <p>Reading csv file as a new game ,run the game .</p>
 <p>*gameboard-the class responsible for the main frame ,creating the menu , using the ImageBackground for drawing the elements,the map.</p>
-<p>7)FileFormat:</p>
+<h2>FileFormat:</h2>
 <p>&nbsp;*csv Reader- reading the csv file and saving the information.</p>
 <p>&nbsp;*csv Data- holds the information accepting from the csv Reader</p>
 <p>*path2kml-the class creating a new kml page in order to open the game in gool earth</p>
 <p>*exportToCsv-the class creating a csv file with information of all the elements of game .</p>
 <p>&nbsp;</p>
-<p>How to play?</p>
+<h2>How to play?</h2>
 <p>There are several options:</p>
 <p>1-you can load a game from a csv file</p>
 <p>2-you can create your own pacmans and fruits.</p>
