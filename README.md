@@ -47,5 +47,7 @@
 <p>3-combine the tow options</p>
 <p>After you have all the elements on the game board you can push "Run Game",after pushing you will see the path of each pacman and there movement.</p>
 <p>After running ,you can save the game to csv file ,export to kml ,or clear the game board and start playing again!</p>
+<p><span style="text-decoration: underline;"><strong>example game:</strong></span></p>
+<p><span style="text-decoration: underline;"><strong><img src="https://github.com/arielBar1295/Ex3/blob/master/OpenedWithImage.jpg" alt="" /></strong></span></p>
 <p><strong>Class diagram:</strong></p>
 <p><strong><img src="https://github.com/arielBar1295/Ex3/blob/master/class%20diagram.jpg" alt="" /></strong></p>
