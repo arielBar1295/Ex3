@@ -66,7 +66,7 @@ public class ImageBackground extends JPanel implements MouseListener
 		c=new Convert();
 		//for the packman and fruit id
 		if(game.getFruit().size()>0&&game.getPackman().size()>0){
-            this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
+			this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
 			this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
 		}
 		else {
@@ -147,7 +147,9 @@ public class ImageBackground extends JPanel implements MouseListener
 	 */
 	public void setGame(CsvData data) {
 		this.game=new Game(data);
-
+		//For id of the elements,in case the user adds elements to the game from the csv
+		this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
+		this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
 		x=1;
 		y=1;
 		repaint();
@@ -157,7 +159,7 @@ public class ImageBackground extends JPanel implements MouseListener
 	 * this function is running when the user push run game 
 	 */
 	public void RunGame() {
-      //creating an array of random colors ,each packman has its own color for its path.
+		//creating an array of random colors ,each packman has its own color for its path.
 		co=new Color[ game.getPackman().size()];
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			Random rand = new Random();
@@ -170,17 +172,24 @@ public class ImageBackground extends JPanel implements MouseListener
 		//if the user runs Game more than 1 .
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			game.getPackman().get(i).getPath().removeAll(game.getPackman().get(i).getPath());
-			
+
 		}
 		Path=new ShortestPathAlgo(game);
 		Path.pathTofruit();
-        run=true;
+		for (int i = 0; i < game.getPackman().size(); i++) {
+			System.out.print(game.getPackman().get(i).getId()+",");
+			//			for (int j = 0; j < game.getPackman().get(i).getPath().size(); j++) {
+			//				System.out.println(game.getPackman());
+			//			}
+
+		}
+		run=true;
 		repaint();
 		//creating a thread for showing the movement of each packman.
 		move moveThePackman;
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			moveThePackman=new move(this,game.getPackman().get(i),1);
-            
+
 			moveThePackman.start();
 		}
 		//printing the results of the game
@@ -201,7 +210,7 @@ public class ImageBackground extends JPanel implements MouseListener
 	 * this function runs when the user creating a new game or adding to an existing one ,by clicking on the screen.
 	 */
 	@Override
-	
+
 	public void mouseClicked(MouseEvent arg0) {
 		run=false;
 		x = arg0.getX();
@@ -211,20 +220,20 @@ public class ImageBackground extends JPanel implements MouseListener
 
 		if(type.equals("packman")) {
 			String id=Integer.toString(counterP);
-			
+
 			counterP++;
-			
+
 			String time=new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss").format(Calendar.getInstance().getTime());
 			game.getPackman().add(new Packman(newPoint,id,time));
 		}
 		if (type.equals("fruit"))
 		{
 			String id=Integer.toString(counterF);
-			
+
 			counterF++;
-			
+
 			game.getFruit().add(new Fruit(newPoint,id));
-			
+
 		}
 		repaint();
 
@@ -265,9 +274,9 @@ public class ImageBackground extends JPanel implements MouseListener
 	public void setSaveTo(String saveTo) {
 		this.saveTo = saveTo;
 	}
-/**
- * this function deletes the elements from the screen and its information,for starting a new game.
- */
+	/**
+	 * this function deletes the elements from the screen and its information,for starting a new game.
+	 */
 	public void clear() {
 		game.getPackman().removeAll(game.getPackman());
 		game.getFruit().removeAll(game.getFruit());
@@ -281,18 +290,18 @@ public class ImageBackground extends JPanel implements MouseListener
 		repaint();
 	}
 
-/**
- * this function saving to kml by using Path2Kml class.
- */
+	/**
+	 * this function saving to kml by using Path2Kml class.
+	 */
 	public void saveToKML() {
 		Path2Kml k = new Path2Kml();
 		k.projectToKml(game, this.saveTo);
 
 	}
 
-/**
- * this function saving to csv by using exportToCsv class.
- */
+	/**
+	 * this function saving to csv by using exportToCsv class.
+	 */
 	public void saveToCSV() {
 		exportToCsv csv = new exportToCsv();
 		try {
