@@ -62,10 +62,14 @@ public class ShortestPathAlgo {
 			}
 			//Going over the arrayList of solution ,find the minimum time ,check if the fruit is free,if it is , remove from the list and add to the temp list ,set the location and time of the pacman ,in the end remove the fruit .
 			while(!this.solution.isEmpty()) {
+				
 				int indexMinTime=findMinTime(solution);
+				
 				if(isIn(indexMinTime,temp)) {
+					
 					temp.add(solution.get(indexMinTime));
 					int indexP=findIndexOfP(solution.get(indexMinTime).getPackmanId(),packman );
+				
 					this.packman.get(indexP).setTime(solution.get(indexMinTime).getTime()+packman.get(indexP).getTime());
 					this.packman.get(indexP).setWeight(solution.get(indexMinTime).getWeight()+this.packman.get(indexP).getWeight());
 					this.packman.get(indexP).getPath().add(solution.get(indexMinTime));
@@ -89,9 +93,12 @@ public class ShortestPathAlgo {
 		}
 		for (int i = 0; i < packman.size(); i++) {
 			packman.get(i).setP(point.get(i));
+		
+			
 		}
 
 	}
+	
 	/**
 	 * The function gets an arrayList and find the minimum time of the solutions.
 	 * @param solution is the arrayList

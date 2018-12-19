@@ -33,7 +33,7 @@ import algo.ShortestPathAlgo;
 import java.util.Random;
 
 /**
- * This class represents the image background.
+ * This class represents the image background, responsible for the game (saving ,running )
  * @author moshe and ariel
  *
  */
@@ -64,8 +64,15 @@ public class ImageBackground extends JPanel implements MouseListener
 		this.addMouseListener(this); 
 		game=new Game();
 		c=new Convert();
-		counterP=0;
-		counterF=0;
+		if(game.getFruit().size()>0&&game.getPackman().size()>0){
+            this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
+			this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
+		}
+		else {
+			this.counterF=0;
+			this.counterP=0;
+		}
+
 		run=false;
 		saveTo="";
 
@@ -159,9 +166,10 @@ public class ImageBackground extends JPanel implements MouseListener
 			Color randomColor = new Color(r, v, b);
 			co[i]=randomColor;
 		}
-		//if the user pushed run Game more than 1 .
+		//if the user runs Game more than 1 .
 		for (int i = 0; i < game.getPackman().size(); i++) {
 			game.getPackman().get(i).getPath().removeAll(game.getPackman().get(i).getPath());
+			
 		}
 		Path=new ShortestPathAlgo(game);
 		Path.pathTofruit();
@@ -199,24 +207,19 @@ public class ImageBackground extends JPanel implements MouseListener
 		y = arg0.getY();
 		Point3D p=new Point3D(x,y);
 		Point3D newPoint=c.pixToCo(p, this.getWidth(), this.getHeight());
-		//for adding id for the elements without multiplication.
-		if(game.getFruit().size()>0&&game.getPackman().size()>0){
-            this.counterF=Integer.parseInt(game.getFruit().get(game.getFruit().size()-1).getId())+1;
-			this.counterP=Integer.parseInt(game.getPackman().get(game.getPackman().size()-1).getId())+1;
-		}
-		else {
-			this.counterF=0;
-			this.counterP=0;
-		}
+
 		if(type.equals("packman")) {
 			String id=Integer.toString(counterP);
+			
 			counterP++;
+			
 			String time=new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss").format(Calendar.getInstance().getTime());
 			game.getPackman().add(new Packman(newPoint,id,time));
 		}
 		if (type.equals("fruit"))
 		{
 			String id=Integer.toString(counterF);
+			
 			counterF++;
 			
 			game.getFruit().add(new Fruit(newPoint,id));

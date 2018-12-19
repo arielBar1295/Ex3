@@ -78,24 +78,7 @@ public class solutionForPackman {
 		}
 		return min;
 	}
-//	public boolean search (int index,ArrayList<Integer> arr) {
-//		for(int i=0;i<arr.size();i++) {
-//			if(arr.get(i)==index)
-//				return true;
-//		}
-//		return false;
-//	}
-//	public static void main(String[] args) {
-//		 CsvData d1=new CsvData("C:\\Users\\moshe\\OneDrive\\Documents\\game_1543684662657.csv");
-//		 Game g= new Game(d1);
-//		 ArrayList<ArrayList> a = new ArrayList<ArrayList>();
-//
-//		 solutionForPa p = new solutionForPa(g.getPackman().get(0),g.getFruit());
-//		 ArrayList<Integer> n =p.solution();
-//		 int a1=0;
-//	
-//		 
-//	}
+
 
 
 }

@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import Fileformat.CsvData;
-
+/**
+ * This class represent a complete game,including a collection of packman and fruit.
+ * @author ariel and moshe
+ *
+ */
 public class Game {
 	private ArrayList<Packman> packman;
 	private ArrayList<Fruit> fruit;
