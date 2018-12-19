@@ -69,7 +69,7 @@ public static void  projectToKml(Game game ,String output) {
  			String temp= date[0]+"T"+timeForFruit+"Z";
  			if(j==0) {   //meaning its a packman
  				 String kmlelement ="<Placemark>\n" +
- 						"<name>"+game.getPackman().get(i).getPath().get(j).getFruitId()+"</name>\n" +
+ 						"<name>"+"Packman ID : "+(i+1)+"</name>\n" +
                        "<Style id="+"\"downArroIcon\""+">"+
  						"<IconStyle>"+
                        "<Icon>"+
@@ -89,7 +89,7 @@ public static void  projectToKml(Game game ,String output) {
  			}
  			else {   //its a fruit
  			 String kmlelement ="<Placemark>\n" +
-						"<name>"+game.getPackman().get(i).getPath().get(j).getFruitId()+"</name>\n" +
+						"<name>"+"Fruit ID : "+game.getPackman().get(i).getPath().get(j).getFruitId()+"</name>\n" +
                       "<Style id="+"\"downArroIcon\""+">"+
 						"<IconStyle>"+
                       "<Icon>"+
@@ -100,7 +100,7 @@ public static void  projectToKml(Game game ,String output) {
 					"<TimeStamp>\n"+
 						"<when>"+temp+"</when>\n"+
 						"</TimeStamp>\n"+
-						//"<description>"+da1ta[1]+"&"+data[2]+"</description>\n"+
+						
 					"<Point>\n"+
 					"<coordinates>"+game.getPackman().get(i).getPath().get(j).getP().x()+"&"+game.getPackman().get(i).getPath().get(j).getP().y()+"&"+game.getPackman().get(i).getPath().get(j).getP().z()+"</coordinates>" +
 					"</Point>\n" +
