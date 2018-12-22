@@ -44,7 +44,7 @@
 <p>There are several options:</p>
 <p>1-you can load a game from a csv file</p>
 <p>2-you can create your own pacmans and fruits.</p>
-<p>3-combine the tow options</p>
+<p>3-combine the two options</p>
 <p>After you have all the elements on the game board you can push "Run Game",after pushing you will see the path of each pacman and there movement.</p>
 <p>After running ,you can save the game to csv file ,export to kml ,or clear the game board and start playing again!</p>
 <p><span style="text-decoration: underline;"><strong>example game:</strong></span></p>
